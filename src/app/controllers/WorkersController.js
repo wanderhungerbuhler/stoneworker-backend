@@ -57,7 +57,7 @@ class WorkersController {
 
     const { id, name, age, office } = await user.update(req.body);
 
-    return res.json({ message: 'Funcionário atualizado com sucesso!' });
+    return res.json({ id, name, age, office });
   }
 
   async delete(req, res) {
