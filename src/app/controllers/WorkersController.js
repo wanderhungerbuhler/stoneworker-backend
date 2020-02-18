@@ -51,7 +51,7 @@ class WorkersController {
 
     const user = await Workers.findByPk(id);
 
-    const { name, age, office } = await user.update(req.body);
+    await user.update(req.body);
 
     return res.json({ message: 'Funcionário atualizado com sucesso!' });
   }
