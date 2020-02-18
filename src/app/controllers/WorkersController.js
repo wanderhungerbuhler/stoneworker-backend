@@ -69,7 +69,7 @@ class WorkersController {
       return res.status(400).json({ error: 'Worker does not exists' });
     }
 
-    await Workers.destroy();
+    await worker.destroy();
 
     return res.json({ message: 'Funcionário removido com sucesso!' });
   }
