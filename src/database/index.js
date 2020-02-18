@@ -2,8 +2,6 @@ const Sequelize = require('sequelize');
 
 const Workers = require('../app/models/Workers');
 
-const databaseConfig = require('../config/db');
-
 const models = [Workers];
 
 class Database {
@@ -12,7 +10,13 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(databaseConfig);
+    this.connection = new Sequelize(process.env.DATABASE_URL, {
+      dialect: 'postgres',
+      protocol: 'postgres',
+      dialectOptions: {
+        ssl: true,
+      },
+    });
 
     models.map(model => model.init(this.connection));
   }
