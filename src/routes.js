@@ -10,7 +10,7 @@ routes.get('/api/workers/:office', WorkersController.show);
 routes.post('/api/workers', WorkersController.store);
 
 /* Update a workers with base in your 'ID' */
-routes.put('/api/workers', WorkersController.update);
+routes.put('/api/workers/:id', WorkersController.update);
 
 /* Delete a workers with base in your 'ID' */
 routes.delete('/api/workers/:id', WorkersController.delete);
