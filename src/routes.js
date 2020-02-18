@@ -13,6 +13,6 @@ routes.post('/api/workers', WorkersController.store);
 routes.put('/api/workers/:index', WorkersController.update);
 
 /* Delete a workers with base in your 'ID' */
-routes.delete('/api/workers/:id', WorkersController.delete);
+routes.delete('/api/workers/:index', WorkersController.delete);
 
 module.exports = routes;

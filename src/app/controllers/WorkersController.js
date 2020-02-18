@@ -61,19 +61,15 @@ class WorkersController {
   }
 
   async delete(req, res) {
-    const schema = Yup.object().shape({
-      id: Yup.number()
-        .positive()
-        .required(),
-    });
+    const { index } = req.params;
 
-    if (!(await schema.isValid(req.params))) {
-      return res.status(400).json({ error: 'ID for delete is invalid...' });
+    const worker = await Workers.findByPk(index);
+
+    if (!worker) {
+      return res.status(400).json({ error: 'Worker does not exists' });
     }
 
-    const { id } = req.params;
-
-    await Workers.destroy({ where: { id } });
+    await Workers.destroy();
 
     return res.json({ message: 'Funcionário removido com sucesso!' });
   }
