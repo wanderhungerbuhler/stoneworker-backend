@@ -47,11 +47,15 @@ class WorkersController {
       return res.status(400).json({ error: 'A validação falhou... ' });
     }
 
-    const { id } = req.body;
+    const { index } = req.params;
 
-    const user = await Workers.findByPk(id);
+    const user = await Workers.findByPk(index);
 
-    await user.update(req.body);
+    if (!user) {
+      return res.status(400).json({ error: 'Visit does not exists' });
+    }
+
+    const { id, name, age, office } = await user.update(req.body);
 
     return res.json({ message: 'Funcionário atualizado com sucesso!' });
   }
